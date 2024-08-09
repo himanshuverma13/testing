@@ -18,6 +18,6 @@ app.use(cors(corsMethod));
 app.use("/api", UserRouter);
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(process.env.PORT || 8000, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
