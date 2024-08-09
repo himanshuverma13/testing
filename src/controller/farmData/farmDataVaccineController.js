@@ -9,6 +9,8 @@ export const createVaccine = async (req, res) => {
   }
 };
 
+
+
 export const getVaccine = async (req, res) => {
   try {
     const user = await Vaccine.find({parentid:req.params.id});
