@@ -106,7 +106,7 @@ UserRouter.get("/user/transaction",  getTransaction);
 UserRouter.post("/user/feedback", verifyToken, createProductFeedback);
 
 // Service Page Route
-UserRouter.post("/user/service_form", verifyToken, createServiceForm);
+UserRouter.post("/user/service_form", createServiceForm);
 
 // Contact Us Route
 UserRouter.post("/user/contact_us", verifyToken, createContactUs);
