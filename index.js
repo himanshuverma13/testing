@@ -12,8 +12,6 @@ const corsMethod = {
   methods: ['GET', 'POST', 'PUT', 'DELETE'], 
 };
 
-
-
 Dbconnection();
 app.use(bodyParser.json());
 app.use(cors(corsMethod));
