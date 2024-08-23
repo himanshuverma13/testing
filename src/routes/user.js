@@ -83,7 +83,6 @@ import {
   updateBlog,
 } from "../controller/adminController/adminBlogController.js";
 import { UserGoogleLogin } from "../repository/user/loginRepository.js";
-import { getDashboardDetails } from "../controller/adminController/adminDashboard.js";
 
 const UserRouter = express.Router();
 
@@ -116,7 +115,7 @@ UserRouter.post("/user/contact_us", verifyToken, createContactUs);
 UserRouter.post("/user/blog", verifyToken, createBlog);
 
 // Transaction Issue Route
-UserRouter.post("/user/transaction_issue", createTransactionIssue);
+UserRouter.post("/user/transaction_issue", verifyToken, createTransactionIssue);
 
 // Farmer Details Route
 UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
@@ -198,8 +197,5 @@ UserRouter.get("/admin/get_all_blog", getAllBlog);
 UserRouter.get("/admin/get_blog/:id", getBlogById);
 UserRouter.put("/admin/update_blog/:id", updateBlog);
 UserRouter.delete("/admin/delete_blog/:id", deleteBlog);
-
-// Dashboard routes
-UserRouter.get("/admin/dashboard", getDashboardDetails);
 
 export default UserRouter;
