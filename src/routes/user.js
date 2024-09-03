@@ -124,7 +124,7 @@ UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
 // Add to Cart Route
 UserRouter.post("/user/cart",  createAddToCart);
 UserRouter.delete("/user/cart/:id", deleteAddToCart);
-UserRouter.get("/user/cart/:id", getCartData);
+UserRouter.get("/user/cart/:id",verifyToken, getCartData);
 
 // Product Review Route
 UserRouter.post("/user/review", verifyToken, createProductReview);

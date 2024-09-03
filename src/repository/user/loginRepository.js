@@ -19,7 +19,7 @@ export const loginUser = async (data) => {
 
     // Generate token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "3 days",
+      expiresIn: "3d",
     });
 
     // Fetch additional data
@@ -90,7 +90,7 @@ export const UserGoogleLogin = async (req, res) => {
 
     // Generate token
     const token = jwt.sign({ userId: user?._id }, process.env.JWT_SECRET, {
-      expiresIn: "3 days",
+      expiresIn: "3d",
     });
 
     // Get farmer details
