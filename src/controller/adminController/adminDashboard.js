@@ -42,17 +42,18 @@ export const getDashboardDetails = async (req, res) => {
       displayDate.setDate(displayDate.getDate() + 1);
 
       results.push({
-        date: new Intl.DateTimeFormat('en', { month: 'short' }).format(displayDate),
+        date: new Intl.DateTimeFormat("en", { month: "short" }).format(
+          displayDate
+        ),
         totalAmount,
       });
     }
 
     // lastest transaction
     const latestTransaction = await transaction
-    .find()
-    .sort({ _id: -1 })
-    .limit(1);
-
+      .find()
+      .sort({ _id: -1 })
+      .limit(1);
 
     // total sales
     const collections = await transaction.find({});
@@ -60,7 +61,6 @@ export const getDashboardDetails = async (req, res) => {
     for (let index = 0; index < collections.length; index++) {
       numberOfCollections += collections[index].cart.length;
     }
-    // console.log('numberOfCollections: ', numberOfCollections);
 
     // barGraph Data
     const barGraphData = await transaction.find({});
@@ -85,20 +85,66 @@ export const getDashboardDetails = async (req, res) => {
     const graphData = Object.keys(counter).map((key) => {
       return {
         name: key.split(" ")[0],
-        Products:counter[key],
+        Products: counter[key],
       };
     });
-    
-    console.log(graphData);
+
+    // Pie Chart Data
+
+    const final = [];
+    let piechart = [];
+
+    for (let index = 0; index < 24; index++) {
+      const startDate = new Date();
+      startDate.setDate(startDate.getDate() - index);
+      startDate.setHours(0, 0, 0, 0);
+
+      const endDate = new Date();
+      endDate.setDate(endDate.getDate() - index);
+      endDate.setHours(23, 59, 59, 999);
+
+      const lastSixTransaction = await transaction.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      });
+
+      const totalAmount = lastSixTransaction.reduce(
+        (sum, transaction) => sum + (transaction.amount || 0),
+        0
+      );
+      const displayDate = new Date(startDate);
+      displayDate.setDate(displayDate.getDate() + 1);
+
+      final.push({
+        date: new Intl.DateTimeFormat("en", { month: "short" }).format(
+          displayDate
+        ),
+        totalAmount,
+      });
+    }
+
+    const start = 0;
+    const step = 4;
+    const end = final.length;
+
+    for (let i = start; i < end; i += step) {
+      let data = final.slice(i, i + step);
+
+      let total = 0;
+
+      for (let i = 0; i < data.length; i++) {
+        total += data[i].totalAmount;
+      }
+      let finalAmount = {value: total}
+      piechart.push(finalAmount);
+    }
 
     res.send({
-      sixMonth:results,
-      lastTransaction:latestTransaction[0]?.amount,
-      totalsale:numberOfCollections,
-      totalPayment:Total,
-        bargraph:graphData,
-        // piechart:piechart,
-
+      sixMonth: results,
+      lastTransaction: latestTransaction[0]?.amount,
+      totalsale: numberOfCollections,
+      totalPayment: Total,
+      bargraph: graphData,
+      piechart:piechart,
     });
   } catch (error) {
     res.status(400).send(error.message);
