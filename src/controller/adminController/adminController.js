@@ -2,6 +2,7 @@ import adminProduct from "../../model/adminModel/adminProduct.js";
 
 export const createProduct = async (req, res, next) => {
   try {
+    console.log('req?.body: ', req?.body);
     const product = await adminProduct.create(req?.body);
 
     if (!product) res.status(404).send("Product not created!");
