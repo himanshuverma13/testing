@@ -32,7 +32,7 @@ export const deleteAddToCart = async (req, res) => {
       let item = await AddToCart.findOne({uid:req.query.uid});
       console.log('item: ', item);
       if(item){
-        let data =  await AddToCart.deleteOne({id:Number(req.params.id)});
+        let data =  await AddToCart.deleteOne({id:req.params.id});
         res.status(200).send("success");
       }
     } catch (error) {
