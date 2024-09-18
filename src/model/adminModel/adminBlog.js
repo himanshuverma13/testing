@@ -18,7 +18,12 @@ const Schema = new mongoose.Schema(
     description: {
       type: String,
     },
-
+    metadescription: {
+      type: String,
+    },
+    script: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
