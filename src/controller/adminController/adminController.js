@@ -2,11 +2,8 @@ import adminProduct from "../../model/adminModel/adminProduct.js";
 
 export const createProduct = async (req, res, next) => {
   try {
-    console.log('req?.body: ', req?.body);
     const product = await adminProduct.create(req?.body);
-
     if (!product) res.status(404).send("Product not created!");
-
     res.json({
       success: true,
       message: "Product created successfully",
@@ -69,6 +66,29 @@ export const updateProduct = async (req, res, next) => {
   }
 };
 
+export const updateProductStock = async (data) => {
+  try {
+    for (const element of data) {
+      let stockQunt = await adminProduct.find({ _id: element?.id });
+      let ChangeQuntity = stockQunt[0]?.stock - element?.amount;
+      const products = await adminProduct.findOneAndUpdate(
+        { _id: element?.id },
+        { stock: ChangeQuntity },
+        {
+          new: true,
+        }
+      );
+    }
+      return {
+        success: true,
+        status: 207,
+        message: "Product quantity update successfully",
+      };
+  } catch (error) {
+    return error.message;
+  }
+};
+
 export const deleteProduct = async (req, res) => {
   try {
     const product = await adminProduct.findByIdAndDelete(req.params.id);
@@ -85,4 +105,10 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
-export default {createProduct,getAllProduct,getProductById,updateProduct,deleteProduct}
+export default {
+  createProduct,
+  getAllProduct,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+};

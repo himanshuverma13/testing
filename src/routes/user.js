@@ -100,7 +100,7 @@ UserRouter.post("/user/send_otp", sendOtp);
 UserRouter.post("/user/verify_otp", verifyOtp);
 
 // Transaction Route
-UserRouter.post("/user/transaction", verifyToken, createTransaction);
+UserRouter.post("/user/transaction",  createTransaction);
 UserRouter.get("/user/transaction",  getTransaction);
 
 // Feedback
