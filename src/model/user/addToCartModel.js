@@ -27,6 +27,11 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     // required: true,
   },
+  stock: {
+    type: Number,
+    // required: true,
+  },
+
 });
 
 export default mongoose.model("AddToCart", UserSchema);

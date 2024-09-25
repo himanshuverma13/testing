@@ -124,7 +124,7 @@ UserRouter.post("/user/farmer_detail", verifyToken, createFarmerDetail);
 // Add to Cart Route
 UserRouter.post("/user/cart",  createAddToCart);
 UserRouter.delete("/user/cart/:id", deleteAddToCart);
-UserRouter.get("/user/cart/:id",verifyToken, getCartData);
+UserRouter.get("/user/cart/:id", getCartData);
 
 // Product Review Route
 UserRouter.post("/user/review", verifyToken, createProductReview);
@@ -199,7 +199,7 @@ UserRouter.get("/admin/get_blog/:id", getBlogById);
 UserRouter.put("/admin/update_blog/:id", updateBlog);
 UserRouter.delete("/admin/delete_blog/:id", deleteBlog);
 
-// Dashboard routes
+// Admin Dashboard routes
 UserRouter.get("/admin/dashboard", getDashboardDetails);
 
 export default UserRouter;

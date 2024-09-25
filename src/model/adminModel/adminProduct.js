@@ -70,6 +70,9 @@ const Schema = new mongoose.Schema(
     video: {
       type: String,
     },
+    stock: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
