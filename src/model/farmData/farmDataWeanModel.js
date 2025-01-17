@@ -4,7 +4,13 @@ const UserSchema = new mongoose.Schema({
   parentid: {
     type: String,
   },
-  post_wean_weight: {
+  parentName: {
+    type: String,
+  },
+  post_wean_weight_kg: {
+    type: String,
+  },
+  post_wean_weight_gm: {
     type: String,
   },
   post_body_score: {
