@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+ 
 const UserSchema = new mongoose.Schema({
   uniquename: {
     type: String,
@@ -7,9 +7,13 @@ const UserSchema = new mongoose.Schema({
   uid: {
     type: String,
   },
-  age: {
+  age_year: {
     type: String,
   },
+  age_month: {
+    type: String,
+  },
+ 
   animal: {
     type: String,
   },
@@ -22,7 +26,10 @@ const UserSchema = new mongoose.Schema({
   gender: {
     type: String,
   },
-  weight: {
+  weight_kg: {
+    type: String,
+  },
+  weight_gm: {
     type: String,
   },
   pregnancy_detail: {
@@ -38,5 +45,5 @@ const UserSchema = new mongoose.Schema({
     type: String,
   },
 });
-
+ 
 export default mongoose.model("Parent", UserSchema);

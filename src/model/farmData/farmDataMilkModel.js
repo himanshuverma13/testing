@@ -4,6 +4,9 @@ const UserSchema = new mongoose.Schema({
   parentid: {
     type: String,
   },
+  parentName: {
+    type: String,
+  },
   milk_for_kid: {
     type: String,
   },

@@ -26,6 +26,7 @@ export const loginUser = async (data) => {
     if (user.role == "admin") {
       return { status: 207, name: "admin", role: user?.role, token };
     }
+    
 
     // Fetch additional data
     const farmerDetail = await getFarmerDetail(user?._id);

@@ -12,7 +12,7 @@ export const createFarmerDetail = async (req, res) => {
 export const getFarmerDetail = async (data) => {
   try {
     const user = await FarmerDetail.findOne({uid:data});
-    return user.name
+    return user.farmname
   } catch (error) {
   }
 };

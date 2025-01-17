@@ -86,7 +86,7 @@ import { UserGoogleLogin } from "../repository/user/loginRepository.js";
 import { getDashboardDetails } from "../controller/adminController/adminDashboard.js";
 
 const UserRouter = express.Router();
-
+// user routes
 // User Registration
 UserRouter.post("/user/register", UserRegistration);
 

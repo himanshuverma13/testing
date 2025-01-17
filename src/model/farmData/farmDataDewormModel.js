@@ -4,6 +4,9 @@ const UserSchema = new mongoose.Schema({
   parentid: {
     type: String,
   },
+  parentName: {
+    type: String,
+  },
   worm_date:{
     type:String,
   },
